@@ -1,0 +1,5 @@
+// Compile and install php-amqp extension
+RUN apk add rabbitmq-c@testing rabbitmq-c-dev@testing \\
+    && pecl install amqp \\
+    && docker-php-ext-enable amqp
+

@@ -1,0 +1,7 @@
+#if version == 70
+RUN pecl install raphf \\
+    && docker-php-ext-enable raphf
+#else
+RUN pecl install raphf-1.1.2 \\
+    && docker-php-ext-enable raphf
+#endif

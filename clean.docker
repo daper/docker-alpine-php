@@ -1,0 +1,2 @@
+// Cleaning apk cache
+RUN rm -rf /var/cache/apk && mkdir -p /var/cache/apk

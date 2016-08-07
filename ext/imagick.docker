@@ -1,0 +1,3 @@
+RUN apk add imagemagick-dev \\
+    && printf "\n" | pecl install imagick \\
+    && docker-php-ext-enable imagick
