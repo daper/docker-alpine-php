@@ -1,0 +1,7 @@
+#if version == 70
+RUN pecl install redis \\
+    && docker-php-ext-enable redis
+#else
+RUN pecl install redis-2.2.8 \\
+    && docker-php-ext-enable redis
+#endif
