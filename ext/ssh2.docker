@@ -1,5 +1,5 @@
 #if version == 70
-RUN apk add libssh2 libssh2-dev \\
+RUN apk add libssh2-dev@edge \\
     && wget "https://github.com/Sean-Der/pecl-networking-ssh2/archive/php7.zip" \\
     && unzip php7.zip \\
     && cd pecl-networking-ssh2-php7 \\
@@ -8,7 +8,7 @@ RUN apk add libssh2 libssh2-dev \\
     && make && make install \\
     && docker-php-ext-enable ssh2
 #else
-RUN apk add libssh2 libssh2-dev \\
+RUN apk add libssh2-dev@edge \\
     && pecl install ssh2 \\
     && docker-php-ext-enable ssh2
 #endif

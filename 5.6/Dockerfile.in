@@ -14,6 +14,7 @@ FROM php:5.6-fpm-alpine
 #include "../ext/xdebug.docker"
 #include "../ext/imagick.docker"
 #include "../ext/ssh2.docker"
+#include "../ext/redis.docker"
 
 #include "../composer.docker"
 

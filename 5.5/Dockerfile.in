@@ -13,6 +13,7 @@ FROM php:5.5-fpm-alpine
 #include "../ext/apcu.docker"
 #include "../ext/xdebug.docker"
 #include "../ext/ssh2.docker"
+#include "../ext/redis.docker"
 
 #include "../composer.docker"
 

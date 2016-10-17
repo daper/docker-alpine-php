@@ -1,6 +1,6 @@
 #if version == 70
 // Custom memcached, not yet in pecl
-RUN apk add libmemcached-dev \\
+RUN apk add cyrus-sasl-dev libmemcached-dev \\
     && git clone "https://github.com/php-memcached-dev/php-memcached.git" \\
     && cd php-memcached \\
     && git checkout php7 \\
@@ -11,7 +11,7 @@ RUN apk add libmemcached-dev \\
     && docker-php-ext-enable memcached
 #elif version == 55 || version == 56
 // Memcached - disable sasl
-RUN apk add libmemcached-dev \\
+RUN apk add cyrus-sasl-dev libmemcached-dev \\
     && git clone "https://github.com/php-memcached-dev/php-memcached.git" \\
     && cd php-memcached \\
     && phpize \\
@@ -21,7 +21,7 @@ RUN apk add libmemcached-dev \\
     && docker-php-ext-enable memcached
 #else
 // Install memcached extension
-RUN apk add libmemcached-dev \\
+RUN apk add cyrus-sasl-dev libmemcached-dev \\
     && pecl install memcached --disable-memcached-sasl \\
     && docker-php-ext-enable memcached
 #endif
