@@ -1,8 +1,9 @@
 # 1 "Dockerfile.in"
 # 1 "<built-in>"
 # 1 "<command-line>"
+# 31 "<command-line>"
 # 1 "/usr/include/stdc-predef.h" 1 3 4
-# 1 "<command-line>" 2
+# 32 "<command-line>" 2
 # 1 "Dockerfile.in"
 
 FROM php:5.5-fpm-alpine
@@ -21,7 +22,8 @@ RUN printf "\n%s\n%s" "@edge http://dl-cdn.alpinelinux.org/alpine/edge/main" "@t
 # 1 "../ext/common.docker" 1
 
 RUN docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --with-jpeg-dir=/usr/include/ \
-    && docker-php-ext-install -j$(grep -c ^processor /proc/cpuinfo 2>/dev/null || 1) gd curl mcrypt mysqli pdo_mysql bcmath zip xml xmlreader xmlwriter simplexml soap json iconv fileinfo dom xsl
+    && docker-php-ext-install -j$(grep -c ^processor /proc/cpuinfo 2>/dev/null || 1) gd curl mcrypt mysqli pdo_mysql bcmath zip xml xmlreader xmlwriter simplexml soap json iconv fileinfo dom xsl pcntl pdo sockets \
+    && pecl install redis
 # 9 "Dockerfile.in" 2
 # 1 "../ext/amqp.docker" 1
 
