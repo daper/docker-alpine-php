@@ -6,7 +6,7 @@
 # 32 "<command-line>" 2
 # 1 "Dockerfile.in"
 
-FROM php:5.6-fpm-alpine
+FROM php:7.1-fpm-alpine
 
 # 1 "../maintainer.docker" 1
 MAINTAINER "daper <david@daper.email>"
@@ -33,17 +33,16 @@ RUN apk add rabbitmq-c@testing rabbitmq-c-dev@testing \
 # 10 "Dockerfile.in" 2
 # 1 "../ext/raphf.docker" 1
 
-
-
-
-RUN pecl install raphf-1.1.2 \
+RUN pecl install raphf \
     && docker-php-ext-enable raphf
 # 11 "Dockerfile.in" 2
 # 1 "../ext/memcached.docker" 1
-# 14 "../ext/memcached.docker"
+
+
 RUN apk add cyrus-sasl-dev libmemcached-dev \
     && git clone "https://github.com/php-memcached-dev/php-memcached.git" \
     && cd php-memcached \
+    && git checkout php7 \
     && phpize \
     && ./configure --disable-memcached-sasl \
     && make \
@@ -56,16 +55,18 @@ RUN pecl install mongodb \
 # 13 "Dockerfile.in" 2
 # 1 "../ext/apcu.docker" 1
 
-
-
-
-RUN pecl install apcu-4.0.11 \
+RUN pecl install apcu \
     && docker-php-ext-enable apcu
 # 14 "Dockerfile.in" 2
 # 1 "../ext/xdebug.docker" 1
-# 10 "../ext/xdebug.docker"
-RUN pecl install xdebug \
-    && docker-php-ext-enable xdebug
+
+RUN git clone --depth 1 "https://github.com/xdebug/xdebug" \
+ && cd xdebug \
+ && phpize \
+ && ./configure \
+ && make \
+ && make install \
+ && docker-php-ext-enable xdebug
 # 15 "Dockerfile.in" 2
 # 1 "../ext/imagick.docker" 1
 RUN apk add imagemagick-dev \
@@ -73,17 +74,19 @@ RUN apk add imagemagick-dev \
     && docker-php-ext-enable imagick
 # 16 "Dockerfile.in" 2
 # 1 "../ext/ssh2.docker" 1
-# 11 "../ext/ssh2.docker"
+
 RUN apk add libssh2-dev@edge \
-    && pecl install ssh2 \
+    && wget "https://github.com/Sean-Der/pecl-networking-ssh2/archive/php7.zip" \
+    && unzip php7.zip \
+    && cd pecl-networking-ssh2-php7 \
+    && phpize \
+    && ./configure \
+    && make && make install \
     && docker-php-ext-enable ssh2
 # 17 "Dockerfile.in" 2
 # 1 "../ext/redis.docker" 1
 
-
-
-
-RUN pecl install redis-2.2.8 \
+RUN pecl install redis \
     && docker-php-ext-enable redis
 # 18 "Dockerfile.in" 2
 

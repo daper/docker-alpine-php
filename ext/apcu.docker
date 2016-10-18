@@ -1,4 +1,4 @@
-#if version == 70
+#if version >= 70
 RUN pecl install apcu \\
     && docker-php-ext-enable apcu
 #else

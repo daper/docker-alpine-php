@@ -1,4 +1,4 @@
-#if version == 70
+#if version >= 70
 RUN apk add libssh2-dev@edge \\
     && wget "https://github.com/Sean-Der/pecl-networking-ssh2/archive/php7.zip" \\
     && unzip php7.zip \\

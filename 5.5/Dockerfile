@@ -63,6 +63,7 @@ RUN pecl install apcu-4.0.11 \
     && docker-php-ext-enable apcu
 # 14 "Dockerfile.in" 2
 # 1 "../ext/xdebug.docker" 1
+# 10 "../ext/xdebug.docker"
 RUN pecl install xdebug \
     && docker-php-ext-enable xdebug
 # 15 "Dockerfile.in" 2

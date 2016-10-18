@@ -1,2 +1,12 @@
+#if version == 71
+RUN git clone --depth 1 "https://github.com/xdebug/xdebug" \\
+	&& cd xdebug \\
+	&& phpize \\
+	&& ./configure \\
+	&& make \\
+	&& make install \\
+	&& docker-php-ext-enable xdebug
+#else
 RUN pecl install xdebug \\
     && docker-php-ext-enable xdebug
+#endif
