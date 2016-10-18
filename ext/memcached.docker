@@ -1,4 +1,4 @@
-#if version == 70
+#if version >= 70
 // Custom memcached, not yet in pecl
 RUN apk add cyrus-sasl-dev libmemcached-dev \\
     && git clone "https://github.com/php-memcached-dev/php-memcached.git" \\

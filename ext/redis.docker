@@ -1,4 +1,4 @@
-#if version == 70
+#if version >= 70
 RUN pecl install redis \\
     && docker-php-ext-enable redis
 #else
