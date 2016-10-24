@@ -45,6 +45,7 @@ Docker PHP Alpine-linux based image with diferent versions and extensions. The r
 - imagick
 - ssh2
 - redis
+- gdm
 
 ### Also contains
 - composer
